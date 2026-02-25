@@ -1,4 +1,3 @@
-'use server';
 
 import { Task } from '@/types/task';
 
@@ -11,7 +10,7 @@ export async function fetchPublicCalendarEvents(calendarId: string): Promise<Tas
     // Formatear la URL del feed iCal público
     const icalUrl = `https://calendar.google.com/calendar/ical/${encodeURIComponent(calendarId)}/public/basic.ics`;
     
-    const response = await fetch(icalUrl, { next: { revalidate: 0 } });
+    const response = await fetch(icalUrl);
     if (!response.ok) throw new Error('No se pudo acceder al calendario. Asegúrate de que sea público.');
 
     const icsText = await response.text();
@@ -63,6 +62,7 @@ export async function fetchPublicCalendarEvents(calendarId: string): Promise<Tas
             parentCategory: 'Reuniones',
             color: '#3495C0',
             createdAt: Date.now(),
+            date: todayStr,
             subtasks: []
           });
         }
