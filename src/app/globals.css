@@ -1,0 +1,74 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 197 33% 94%;
+    --foreground: 199 60% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 199 60% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 199 60% 10%;
+    --primary: 199 57% 48%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 197 20% 88%;
+    --secondary-foreground: 199 57% 20%;
+    --muted: 197 20% 88%;
+    --muted-foreground: 199 20% 45%;
+    --accent: 172 50% 60%;
+    --accent-foreground: 199 60% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 199 20% 85%;
+    --input: 199 20% 85%;
+    --ring: 199 57% 48%;
+    --radius: 0.75rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+}
+
+.horizontal-scrollbar::-webkit-scrollbar {
+  height: 8px;
+}
+.horizontal-scrollbar::-webkit-scrollbar-track {
+  @apply bg-secondary/30 rounded-full;
+}
+.horizontal-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-primary/40 rounded-full hover:bg-primary/60 transition-colors;
+}
+
+.timeline-grid {
+  /* Grid lines for hours and subtler 15-min dashes if desired via SVG or linear-gradient */
+  background-image: 
+    linear-gradient(to right, hsl(var(--border) / 0.5) 1px, transparent 1px);
+  background-size: 240px 100%; /* Sincronizado con PIXELS_PER_HOUR (240px) */
+}
+
+@keyframes progress-shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.animate-shimmer {
+  animation: progress-shimmer 2s infinite linear;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-muted-foreground/10 rounded-full hover:bg-muted-foreground/20;
+}
